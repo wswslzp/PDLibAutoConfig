@@ -34,14 +34,14 @@ template = {
                 "preRoute": {
                     "resistance": 1,
                     "capacitance": 1, 
-                    "clockResistance": 1,
-                    "clockCapacitance": 1
+                    "clockResistance": 0,
+                    "clockCapacitance": 0
                 },
                 "postRoute": {
                     "resistance": [1, 1, 1],
                     "capacitance": [1, 1, 1], 
-                    "clockResistance": [1, 1, 1],
-                    "clockCapacitance": [1, 1, 1]
+                    "clockResistance": [0, 0, 0],
+                    "clockCapacitance": [0, 0, 0]
                 }
             }
         }
