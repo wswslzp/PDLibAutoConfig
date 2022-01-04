@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 import prettytable as ppt
 from functools import reduce
+import platform
 
 import libScanner
 
 class PhysicLibManager(object):
     def __init__(self) -> None:
         super().__init__()
-        self.techLef: libScanner.PhysicLib = None
+        self.techLefs: list[libScanner.PhysicLib] = []
         self.macroLef: list[libScanner.PhysicLib] = []
 
     def searchForLibs(self, libPath):
@@ -15,11 +16,27 @@ class PhysicLibManager(object):
         #     return len(techlef.getAllLayers())
         lefs = libScanner.searchForPhysicLib(libPath)
         techlefs = list(filter(lambda lef: lef.isTechLef(), lefs))
-        if len(techlefs) != 0:
-            self.techLef = techlefs[0] ## TODO: randomly choose
+        # if len(techlefs) != 0:
+        #     self.techLef = techlefs[0] ## TODO: randomly choose
+        self.techLefs = techlefs
         self.macroLef += list(filter(lambda lef: not lef.isTechLef(), lefs))
         # layers = map(getLayerNum, techlefs)
-        
+
+    def printLayerTable(self):
+        table = ppt.PrettyTable(['Name', 'Metal layers', 'Total'])
+        self.techLefs.sort(key=lambda lef: len(lef.getAllLayers()))
+        for tlef in self.techLefs:
+            layers = tlef.getAllLayers()
+            number = len(layers)
+            layers = str(reduce(lambda a,b: a+", "+b, layers))
+            table.add_row([tlef.libName, layers, number])
+        print(table)
+
+    def printMacroLefs(self):
+        table = ppt.PrettyTable(['Name', 'File'])
+        for mlef in self.macroLef:
+            table.add_row([mlef.libName, mlef.libPath])
+        print(table)
 
 class TimingLibManager(object):
     def __init__(self, IPName) -> None:
@@ -100,7 +117,11 @@ if __name__ == "__main__":
     libm = PhysicLibManager()
     # libm.searchForLibs("D:\\lzp\\tmp\\umc\\55ulpuhvt\\fsf0u_juu\\2017Q3v1.0\\ECO_M1_CORE\\FrontEnd\\synopsys\\synthesis")
     # libm.searchForLibs("D:\\lzp\\tmp\\umc\\55ulpuhvt\\fsf0u_juu\\2017Q3v1.0\\GENERIC_CORE")
-    libm.searchForLibs("D:\\lzp\\tmp\\umc\\55ulpuhvt\\fsf0u_juu\\2017Q3v1.0")
-    # libm.searchForLibs("/mnt/d/lzp/tmp/umc/55ulpuhvt/fsf0u_juu/2017Q3v1.0")
+    if platform.system() == "Windows":
+        libm.searchForLibs("D:\\lzp\\tmp\\umc\\55ulpuhvt\\fsf0u_juu\\2017Q3v1.0")
+    elif platform.system() == "Linux":
+        libm.searchForLibs("/mnt/d/lzp/tmp/umc/55ulpuhvt/fsf0u_juu/2017Q3v1.0")
     # libm.printCornerTable()
+    libm.printLayerTable()
+    libm.printMacroLefs()
     print("")

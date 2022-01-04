@@ -1,0 +1,211 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+create_rc_corner -name typical -T25 -preRoute_res 1 -preRoute_cap 1 -preRoute_clkres 1 -preRoute_clkcap 1 -postRoute_res {1, 1, 1} -postRoute_cap {1, 1, 1} -postRoute_clkres {1, 1, 1} -postRoute_clkcap {1, 1, 1} -postRoute_xcap {1, 1, 1} -postRoute_clkxcap {1, 1, 1}
+create_rc_corner -name cbest -T25 -preRoute_res 1 -preRoute_cap 1 -preRoute_clkres 1 -preRoute_clkcap 1 -postRoute_res {1, 1, 1} -postRoute_cap {1, 1, 1} -postRoute_clkres {1, 1, 1} -postRoute_clkcap {1, 1, 1} -postRoute_xcap {1, 1, 1} -postRoute_clkxcap {1, 1, 1}
+create_rc_corner -name rcbest -T25 -preRoute_res 1 -preRoute_cap 1 -preRoute_clkres 1 -preRoute_clkcap 1 -postRoute_res {1, 1, 1} -postRoute_cap {1, 1, 1} -postRoute_clkres {1, 1, 1} -postRoute_clkcap {1, 1, 1} -postRoute_xcap {1, 1, 1} -postRoute_clkxcap {1, 1, 1}
+create_rc_corner -name cworst -T25 -preRoute_res 1 -preRoute_cap 1 -preRoute_clkres 1 -preRoute_clkcap 1 -postRoute_res {1, 1, 1} -postRoute_cap {1, 1, 1} -postRoute_clkres {1, 1, 1} -postRoute_clkcap {1, 1, 1} -postRoute_xcap {1, 1, 1} -postRoute_clkxcap {1, 1, 1}
+create_rc_corner -name rcworst -T25 -preRoute_res 1 -preRoute_cap 1 -preRoute_clkres 1 -preRoute_clkcap 1 -postRoute_res {1, 1, 1} -postRoute_cap {1, 1, 1} -postRoute_clkres {1, 1, 1} -postRoute_clkcap {1, 1, 1} -postRoute_xcap {1, 1, 1} -postRoute_clkxcap {1, 1, 1}
+
+create_library_set -name ffv0p990tn40c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff0p33b0p99vm40c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff0p33b0p99vm40c.lib.gz}
+create_library_set -name ffv0p990t125c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff0p33b0p99v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff0p99v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff0p33b0p99v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff0p99v125c.lib.gz}
+create_library_set -name ffv0p990t85c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff0p99v85c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff0p99v85c.lib.gz}
+create_library_set -name ffv1p320tn40c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff1p32vm40c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff1p32vm40c.lib.gz}
+create_library_set -name ffv1p320t0c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff1p32v0c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff1p32v0c.lib.gz}
+create_library_set -name ffv1p320t125c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff1p32v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff1p32v125c.lib.gz}
+create_library_set -name ffv1p320t85c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ff1p32v85c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ff1p32v85c.lib.gz}
+create_library_set -name ttv0p900t25c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt0p3b0p9v25c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt0p9v25c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt0p3b0p9v25c.lib D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt0p9v25c.lib}
+create_library_set -name ttv0p900t125c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt0p3b0p9v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt0p9v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt0p3b0p9v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt0p9v125c.lib.gz}
+create_library_set -name ttv0p900t85c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt0p3b0p9v85c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt0p9v85c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt0p3b0p9v85c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt0p9v85c.lib.gz}
+create_library_set -name ttv1p200t25c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt1p2v25c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt1p2v25c.lib.gz}
+create_library_set -name ttv1p200t125c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt1p2v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt1p2v125c.lib.gz}
+create_library_set -name ttv1p200t85c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_tt1p2v85c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_tt1p2v85c.lib.gz}
+create_library_set -name ssv1p080tn40c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ss1p08vm40c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ss1p08vm40c.lib.gz}
+create_library_set -name ssv1p080t0c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ss1p08v0c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ss1p08v0c.lib.gz}
+create_library_set -name ssv1p080t125c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ss1p08v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ss1p08v125c.lib.gz}
+create_library_set -name ssv0p810tn40c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ss0p27b0p81vm40c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ss0p27b0p81vm40c.lib.gz}
+create_library_set -name ssv0p810t125c -timing {D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\ECO_M1_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_eco_m1_core_ss0p27b0p81v125c.lib.gz D:\lzp\tmp\umc\55ulpuhvt\fsf0u_juu\2017Q3v1.0\GENERIC_CORE\FrontEnd\synopsys\synthesis\fsf0u_juu_generic_core_ss0p27b0p81v125c.lib.gz}
+
+create_constraint_mode -name func -sdc_files {}
+
+create_delay_corner -name ffv0p990tn40c_typical -rc_cornertypical -libraray_set {ffv0p990tn40c}
+create_delay_corner -name ffv0p990t125c_typical -rc_cornertypical -libraray_set {ffv0p990t125c}
+create_delay_corner -name ffv0p990t85c_typical -rc_cornertypical -libraray_set {ffv0p990t85c}
+create_delay_corner -name ffv1p320tn40c_typical -rc_cornertypical -libraray_set {ffv1p320tn40c}
+create_delay_corner -name ffv1p320t0c_typical -rc_cornertypical -libraray_set {ffv1p320t0c}
+create_delay_corner -name ffv1p320t125c_typical -rc_cornertypical -libraray_set {ffv1p320t125c}
+create_delay_corner -name ffv1p320t85c_typical -rc_cornertypical -libraray_set {ffv1p320t85c}
+create_delay_corner -name ttv0p900t25c_typical -rc_cornertypical -libraray_set {ttv0p900t25c}
+create_delay_corner -name ttv0p900t125c_typical -rc_cornertypical -libraray_set {ttv0p900t125c}
+create_delay_corner -name ttv0p900t85c_typical -rc_cornertypical -libraray_set {ttv0p900t85c}
+create_delay_corner -name ttv1p200t25c_typical -rc_cornertypical -libraray_set {ttv1p200t25c}
+create_delay_corner -name ttv1p200t125c_typical -rc_cornertypical -libraray_set {ttv1p200t125c}
+create_delay_corner -name ttv1p200t85c_typical -rc_cornertypical -libraray_set {ttv1p200t85c}
+create_delay_corner -name ssv1p080tn40c_typical -rc_cornertypical -libraray_set {ssv1p080tn40c}
+create_delay_corner -name ssv1p080t0c_typical -rc_cornertypical -libraray_set {ssv1p080t0c}
+create_delay_corner -name ssv1p080t125c_typical -rc_cornertypical -libraray_set {ssv1p080t125c}
+create_delay_corner -name ssv0p810tn40c_typical -rc_cornertypical -libraray_set {ssv0p810tn40c}
+create_delay_corner -name ssv0p810t125c_typical -rc_cornertypical -libraray_set {ssv0p810t125c}
+create_delay_corner -name ffv0p990tn40c_cbest -rc_cornercbest -libraray_set {ffv0p990tn40c}
+create_delay_corner -name ffv0p990t125c_cbest -rc_cornercbest -libraray_set {ffv0p990t125c}
+create_delay_corner -name ffv0p990t85c_cbest -rc_cornercbest -libraray_set {ffv0p990t85c}
+create_delay_corner -name ffv1p320tn40c_cbest -rc_cornercbest -libraray_set {ffv1p320tn40c}
+create_delay_corner -name ffv1p320t0c_cbest -rc_cornercbest -libraray_set {ffv1p320t0c}
+create_delay_corner -name ffv1p320t125c_cbest -rc_cornercbest -libraray_set {ffv1p320t125c}
+create_delay_corner -name ffv1p320t85c_cbest -rc_cornercbest -libraray_set {ffv1p320t85c}
+create_delay_corner -name ttv0p900t25c_cbest -rc_cornercbest -libraray_set {ttv0p900t25c}
+create_delay_corner -name ttv0p900t125c_cbest -rc_cornercbest -libraray_set {ttv0p900t125c}
+create_delay_corner -name ttv0p900t85c_cbest -rc_cornercbest -libraray_set {ttv0p900t85c}
+create_delay_corner -name ttv1p200t25c_cbest -rc_cornercbest -libraray_set {ttv1p200t25c}
+create_delay_corner -name ttv1p200t125c_cbest -rc_cornercbest -libraray_set {ttv1p200t125c}
+create_delay_corner -name ttv1p200t85c_cbest -rc_cornercbest -libraray_set {ttv1p200t85c}
+create_delay_corner -name ssv1p080tn40c_cbest -rc_cornercbest -libraray_set {ssv1p080tn40c}
+create_delay_corner -name ssv1p080t0c_cbest -rc_cornercbest -libraray_set {ssv1p080t0c}
+create_delay_corner -name ssv1p080t125c_cbest -rc_cornercbest -libraray_set {ssv1p080t125c}
+create_delay_corner -name ssv0p810tn40c_cbest -rc_cornercbest -libraray_set {ssv0p810tn40c}
+create_delay_corner -name ssv0p810t125c_cbest -rc_cornercbest -libraray_set {ssv0p810t125c}
+create_delay_corner -name ffv0p990tn40c_rcbest -rc_cornerrcbest -libraray_set {ffv0p990tn40c}
+create_delay_corner -name ffv0p990t125c_rcbest -rc_cornerrcbest -libraray_set {ffv0p990t125c}
+create_delay_corner -name ffv0p990t85c_rcbest -rc_cornerrcbest -libraray_set {ffv0p990t85c}
+create_delay_corner -name ffv1p320tn40c_rcbest -rc_cornerrcbest -libraray_set {ffv1p320tn40c}
+create_delay_corner -name ffv1p320t0c_rcbest -rc_cornerrcbest -libraray_set {ffv1p320t0c}
+create_delay_corner -name ffv1p320t125c_rcbest -rc_cornerrcbest -libraray_set {ffv1p320t125c}
+create_delay_corner -name ffv1p320t85c_rcbest -rc_cornerrcbest -libraray_set {ffv1p320t85c}
+create_delay_corner -name ttv0p900t25c_rcbest -rc_cornerrcbest -libraray_set {ttv0p900t25c}
+create_delay_corner -name ttv0p900t125c_rcbest -rc_cornerrcbest -libraray_set {ttv0p900t125c}
+create_delay_corner -name ttv0p900t85c_rcbest -rc_cornerrcbest -libraray_set {ttv0p900t85c}
+create_delay_corner -name ttv1p200t25c_rcbest -rc_cornerrcbest -libraray_set {ttv1p200t25c}
+create_delay_corner -name ttv1p200t125c_rcbest -rc_cornerrcbest -libraray_set {ttv1p200t125c}
+create_delay_corner -name ttv1p200t85c_rcbest -rc_cornerrcbest -libraray_set {ttv1p200t85c}
+create_delay_corner -name ssv1p080tn40c_rcbest -rc_cornerrcbest -libraray_set {ssv1p080tn40c}
+create_delay_corner -name ssv1p080t0c_rcbest -rc_cornerrcbest -libraray_set {ssv1p080t0c}
+create_delay_corner -name ssv1p080t125c_rcbest -rc_cornerrcbest -libraray_set {ssv1p080t125c}
+create_delay_corner -name ssv0p810tn40c_rcbest -rc_cornerrcbest -libraray_set {ssv0p810tn40c}
+create_delay_corner -name ssv0p810t125c_rcbest -rc_cornerrcbest -libraray_set {ssv0p810t125c}
+create_delay_corner -name ffv0p990tn40c_cworst -rc_cornercworst -libraray_set {ffv0p990tn40c}
+create_delay_corner -name ffv0p990t125c_cworst -rc_cornercworst -libraray_set {ffv0p990t125c}
+create_delay_corner -name ffv0p990t85c_cworst -rc_cornercworst -libraray_set {ffv0p990t85c}
+create_delay_corner -name ffv1p320tn40c_cworst -rc_cornercworst -libraray_set {ffv1p320tn40c}
+create_delay_corner -name ffv1p320t0c_cworst -rc_cornercworst -libraray_set {ffv1p320t0c}
+create_delay_corner -name ffv1p320t125c_cworst -rc_cornercworst -libraray_set {ffv1p320t125c}
+create_delay_corner -name ffv1p320t85c_cworst -rc_cornercworst -libraray_set {ffv1p320t85c}
+create_delay_corner -name ttv0p900t25c_cworst -rc_cornercworst -libraray_set {ttv0p900t25c}
+create_delay_corner -name ttv0p900t125c_cworst -rc_cornercworst -libraray_set {ttv0p900t125c}
+create_delay_corner -name ttv0p900t85c_cworst -rc_cornercworst -libraray_set {ttv0p900t85c}
+create_delay_corner -name ttv1p200t25c_cworst -rc_cornercworst -libraray_set {ttv1p200t25c}
+create_delay_corner -name ttv1p200t125c_cworst -rc_cornercworst -libraray_set {ttv1p200t125c}
+create_delay_corner -name ttv1p200t85c_cworst -rc_cornercworst -libraray_set {ttv1p200t85c}
+create_delay_corner -name ssv1p080tn40c_cworst -rc_cornercworst -libraray_set {ssv1p080tn40c}
+create_delay_corner -name ssv1p080t0c_cworst -rc_cornercworst -libraray_set {ssv1p080t0c}
+create_delay_corner -name ssv1p080t125c_cworst -rc_cornercworst -libraray_set {ssv1p080t125c}
+create_delay_corner -name ssv0p810tn40c_cworst -rc_cornercworst -libraray_set {ssv0p810tn40c}
+create_delay_corner -name ssv0p810t125c_cworst -rc_cornercworst -libraray_set {ssv0p810t125c}
+create_delay_corner -name ffv0p990tn40c_rcworst -rc_cornerrcworst -libraray_set {ffv0p990tn40c}
+create_delay_corner -name ffv0p990t125c_rcworst -rc_cornerrcworst -libraray_set {ffv0p990t125c}
+create_delay_corner -name ffv0p990t85c_rcworst -rc_cornerrcworst -libraray_set {ffv0p990t85c}
+create_delay_corner -name ffv1p320tn40c_rcworst -rc_cornerrcworst -libraray_set {ffv1p320tn40c}
+create_delay_corner -name ffv1p320t0c_rcworst -rc_cornerrcworst -libraray_set {ffv1p320t0c}
+create_delay_corner -name ffv1p320t125c_rcworst -rc_cornerrcworst -libraray_set {ffv1p320t125c}
+create_delay_corner -name ffv1p320t85c_rcworst -rc_cornerrcworst -libraray_set {ffv1p320t85c}
+create_delay_corner -name ttv0p900t25c_rcworst -rc_cornerrcworst -libraray_set {ttv0p900t25c}
+create_delay_corner -name ttv0p900t125c_rcworst -rc_cornerrcworst -libraray_set {ttv0p900t125c}
+create_delay_corner -name ttv0p900t85c_rcworst -rc_cornerrcworst -libraray_set {ttv0p900t85c}
+create_delay_corner -name ttv1p200t25c_rcworst -rc_cornerrcworst -libraray_set {ttv1p200t25c}
+create_delay_corner -name ttv1p200t125c_rcworst -rc_cornerrcworst -libraray_set {ttv1p200t125c}
+create_delay_corner -name ttv1p200t85c_rcworst -rc_cornerrcworst -libraray_set {ttv1p200t85c}
+create_delay_corner -name ssv1p080tn40c_rcworst -rc_cornerrcworst -libraray_set {ssv1p080tn40c}
+create_delay_corner -name ssv1p080t0c_rcworst -rc_cornerrcworst -libraray_set {ssv1p080t0c}
+create_delay_corner -name ssv1p080t125c_rcworst -rc_cornerrcworst -libraray_set {ssv1p080t125c}
+create_delay_corner -name ssv0p810tn40c_rcworst -rc_cornerrcworst -libraray_set {ssv0p810tn40c}
+create_delay_corner -name ssv0p810t125c_rcworst -rc_cornerrcworst -libraray_set {ssv0p810t125c}
+
+create_analysis_view -name func_ffv0p990tn40c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t125c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t85c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320tn40c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t0c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t125c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t85c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t25c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t125c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t85c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t25c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t125c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t85c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080tn40c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t0c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t125c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810tn40c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810t125c_typical -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990tn40c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t125c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t85c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320tn40c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t0c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t125c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t85c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t25c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t125c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t85c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t25c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t125c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t85c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080tn40c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t0c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t125c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810tn40c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810t125c_cbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990tn40c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t125c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t85c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320tn40c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t0c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t125c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t85c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t25c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t125c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t85c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t25c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t125c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t85c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080tn40c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t0c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t125c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810tn40c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810t125c_rcbest -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990tn40c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t125c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t85c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320tn40c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t0c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t125c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t85c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t25c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t125c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t85c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t25c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t125c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t85c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080tn40c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t0c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t125c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810tn40c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810t125c_cworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990tn40c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t125c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv0p990t85c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320tn40c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t0c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t125c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ffv1p320t85c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t25c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t125c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv0p900t85c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t25c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t125c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ttv1p200t85c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080tn40c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t0c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv1p080t125c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810tn40c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+create_analysis_view -name func_ssv0p810t125c_rcworst -constraint_mode {func} -delay_corner {ssv0p810t125c_rcworst}
+

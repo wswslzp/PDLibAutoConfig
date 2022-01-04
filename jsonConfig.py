@@ -162,6 +162,8 @@ class PdConfig(object):
                 cornerName = opc + '_' + rc
                 self.config['delayCorner'][cornerName] = template.copy()
                 self.config['delayCorner'][cornerName]['rcCorner'] = rc
+                ## TODO: 
+                ## Considering the OCV timing mode, which has early and late library set
                 self.config['delayCorner'][cornerName]['library'] = opc
         return self
 
@@ -186,6 +188,10 @@ class PdConfig(object):
         with open(jsonPath, 'w') as jsonf:
             jsonf.write(content)
 
+    def readJson(self, jsonPath: str):
+        with open(jsonPath, "r") as f:
+            self.config = json.load(f)
+        return self
 
 if __name__ == "__main__":
     config = PdConfig()
