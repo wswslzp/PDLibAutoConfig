@@ -103,6 +103,7 @@ class PdConfig(object):
         super().__init__()
         self.config = template
         self.timingManager = MultipleTimingLibManager()
+        self.physicManager = PhysicLibManager()
         # complete all five rc corners
         for corner in ["cbest", "rcbest", "cworst", "rcworst"]:
             self.config["rcCorner"][corner] = template["rcCorner"]["typical"].copy()
@@ -110,6 +111,13 @@ class PdConfig(object):
     def addIp(self, *ips: tuple[str, str]):
         for ip in ips:
             self.timingManager.addSearchPath(ip[0], ip[1])
+            self.physicManager.searchForLibs(ip[1])
+
+    def selectMetal(self, metalLayer: str):
+        # self.physicManager.printLayerTable()
+        # self.config['physicalData']['lef'] = 
+        self.physicManager # TODO
+        return self
 
     def addConsMode(self, *sdcs: tuple[str, str]):
         if len(sdcs) != 0:
