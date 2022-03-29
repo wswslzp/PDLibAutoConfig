@@ -142,14 +142,29 @@ def searchForPhysicLib(path: str):
     return ret
 
 def searchForTimingLib(path: str):
+    from multiprocessing import Process
     ret = []
+    process = []
+    def inlineFunc(path):
+        timingLib = scanTimingLib(path)
+        if timingLib.libName != "":
+            ret.append(timingLib)
     for p, d, f in os.walk(path):
         for lib in f:
             if lib.endswith(".lib") or lib.endswith(".lib.gz"):
                 logging.info("scanning {path}".format(path=os.path.join(p,lib)))
-                timingLib = scanTimingLib(os.path.join(p, lib))
-                if timingLib.libName != "":
-                    ret.append(timingLib)
+                # timingLib = scanTimingLib(os.path.join(p, lib))
+                # if timingLib.libName != "":
+                #     ret.append(timingLib)
+                process.append(
+                    Process(target=inlineFunc, args=(os.path.join(p, lib),))
+                )
+    procid = 0
+    for p in process:
+        logging.debug("star proc id {}".format(procid))
+        p.start()
+        procid += 1
+    [p.join() for p in process]
     return ret
 
 if __name__ == "__main__":

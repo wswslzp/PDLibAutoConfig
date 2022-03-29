@@ -111,20 +111,8 @@ class PdConfig(object):
             self.config["rcCorner"][corner] = template["rcCorner"]["typical"].copy()
 
     def scanIpTimingLibs(self, *ips):
-        from multiprocessing import Process
-        processes = []
         for ip in ips:
-            # self.timingManager.addSearchPath(ip[0], ip[1])
-            logging.debug(ips)
-            processes.append(
-                Process(target=self.timingManager.addSearchPath, args=(ip[0], ip[1]))
-            )
-        procid = 0
-        for p in processes:
-            logging.debug("start proc {}".format(procid))
-            p.start()
-            procid += 1
-        [p.join() for p in processes]
+            self.timingManager.addSearchPath(ip[0], ip[1])
 
     def scanIpPhysicLibs(self, *ips):
         for ip in ips:
