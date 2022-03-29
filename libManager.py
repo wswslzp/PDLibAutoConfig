@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 from functools import reduce
 import platform
-
-from matplotlib.pyplot import table
-
 import libScanner
 
 class PhysicLibManager(object):
