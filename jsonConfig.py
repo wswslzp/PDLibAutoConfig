@@ -114,7 +114,7 @@ class PdConfig(object):
 
     def scanIpPhysicLibs(self, *ips):
         for ip in ips:
-            self.physicManager.addSearchPath(ip[1])
+            self.physicManager.searchForLibs(ip[1])
 
     def addIp(self, *ips):
         for ip in ips:
