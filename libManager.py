@@ -64,8 +64,8 @@ class TimingLibManager(object):
         self.IPName = IPName
         self.timingLibs: list[libScanner.TimingLib] = []
         
-    def searchForLibs(self, libPath):
-        self.timingLibs = libScanner.searchForTimingLib(libPath)
+    def searchForLibs(self, libPath, parallel=1):
+        self.timingLibs = libScanner.searchForTimingLib(libPath, parallel=parallel)
 
     def getPVT(self, pvt: str):
         return [lib.corner[pvt] for lib in self.timingLibs]
@@ -127,9 +127,9 @@ class MultipleTimingLibManager(object):
         super().__init__()
         self.subLibsManager: list[TimingLibManager] = []
 
-    def addSearchPath(self, ip: str, ipLibPath: str):
+    def addSearchPath(self, ip: str, ipLibPath: str, parallel=1):
         manager = TimingLibManager(ip)
-        manager.searchForLibs(ipLibPath)
+        manager.searchForLibs(ipLibPath, parallel=parallel)
         self.subLibsManager.append(manager)
         
 

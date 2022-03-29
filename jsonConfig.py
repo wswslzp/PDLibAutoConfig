@@ -110,16 +110,16 @@ class PdConfig(object):
         for corner in ["cbest", "rcbest", "cworst", "rcworst"]:
             self.config["rcCorner"][corner] = template["rcCorner"]["typical"].copy()
 
-    def scanIpTimingLibs(self, *ips):
+    def scanIpTimingLibs(self, *ips, parallel=1):
         for ip in ips:
-            self.timingManager.addSearchPath(ip[0], ip[1])
+            self.timingManager.addSearchPath(ip[0], ip[1], parallel=parallel)
 
     def scanIpPhysicLibs(self, *ips):
         for ip in ips:
             self.physicManager.searchForLibs(ip[1])
 
-    def addIp(self, *ips):
-        self.scanIpTimingLibs(ips)
+    def addIp(self, *ips, parallel=1):
+        self.scanIpTimingLibs(ips, parallel=parallel)
         self.scanIpPhysicLibs(ips)
 
     def showMetalAvail(self):

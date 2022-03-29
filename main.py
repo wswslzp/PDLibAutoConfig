@@ -24,7 +24,7 @@ def scan(args):
         )
     else:
         config.addIp(
-            args.ip, args.dir
+            args.ip, args.dir, parallel=args.multi_proc
         )
     config.buildMmmcView()
     config.writeJson(args.output)
@@ -54,6 +54,7 @@ if __name__ == "__main__":
     scanParser.add_argument("--show-metal", help="show metal layer", action="store_true")
     scanParser.add_argument("--only-physic", help="only scan for physical libraries", action="store_true")
     scanParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
+    scanParser.add_argument("--multi-proc", type=int, help="enable multi-thread scanning", required=False, default=4)
     scanParser.set_defaults(show_metal=False)
     scanParser.set_defaults(only_physic=False)
     scanParser.set_defaults(func=scan)
