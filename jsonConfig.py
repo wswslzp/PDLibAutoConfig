@@ -108,6 +108,14 @@ class PdConfig(object):
         for corner in ["cbest", "rcbest", "cworst", "rcworst"]:
             self.config["rcCorner"][corner] = template["rcCorner"]["typical"].copy()
 
+    def scanIpTimingLibs(self, *ips):
+        for ip in ips:
+            self.timingManager.addSearchPath(ip[0], ip[1])
+
+    def scanIpPhysicLibs(self, *ips):
+        for ip in ips:
+            self.physicManager.addSearchPath(ip[1])
+
     def addIp(self, *ips):
         for ip in ips:
             self.timingManager.addSearchPath(ip[0], ip[1])

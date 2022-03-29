@@ -21,13 +21,23 @@ class PhysicLib(object):
                 if "MACRO" in line:
                     ret = False 
                     break
+        if self.libPath.endswith(".tf"):
+            ret = True
         return ret
 
     def getAllLayers(self):
         layer_p = re.compile(r"LAYER (\w+)\s*TYPE\sROUTING ;")
+        tf_layer_p = re.compile(
+            r'Layer\s*"(\w+)"\s*{\s+layerNumber\s*=\s*\d+\s+maskName\s*=\s*"metal'
+        )
         with open(self.libPath, "r") as lef:
             content = lef.read()
-            layers = layer_p.findall(content)
+            if self.libPath.endswith("*.lef") or self.libPath.endswith("*.plef"):
+                layers = layer_p.findall(content)
+            elif self.libPath.endswith("*.tf"):
+                layers = tf_layer_p.findall(content)
+            else:
+                layers = []
             return layers
 
 class TimingLib(object):
@@ -100,7 +110,7 @@ class TimingLib(object):
 
 def scanPhysicLib(libPath: str):
     ret = PhysicLib()
-    if libPath.endswith(".lef") or libPath.endswith(".plef"):
+    if libPath.endswith(".lef") or libPath.endswith(".plef") or libPath.endswith(".tf"):
         ret.libPath = libPath
         ret.libName = os.path.basename(libPath).split(".")[0]
     return ret
@@ -122,7 +132,7 @@ def searchForPhysicLib(path: str):
     ret = []
     for p, d, f in os.walk(path):
         for lib in f:
-            if lib.endswith(".lef") or lib.endswith(".plef"):
+            if lib.endswith(".lef") or lib.endswith(".plef") or lib.endswith(".tf"):
                 print("scanning {path}".format(path=os.path.join(p, lib)))
                 physicLib = scanPhysicLib(os.path.join(p, lib))
                 ret.append(physicLib)
