@@ -132,6 +132,7 @@ def searchForTimingLib(path: str):
     for p, d, f in os.walk(path):
         for lib in f:
             if lib.endswith(".lib") or lib.endswith(".lib.gz"):
+                print("scanning {path}".format(path=os.path.join(p,lib)))
                 timingLib = scanTimingLib(os.path.join(p, lib))
                 if timingLib.libName != "":
                     ret.append(timingLib)
