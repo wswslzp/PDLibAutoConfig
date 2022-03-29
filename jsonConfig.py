@@ -108,7 +108,7 @@ class PdConfig(object):
         for corner in ["cbest", "rcbest", "cworst", "rcworst"]:
             self.config["rcCorner"][corner] = template["rcCorner"]["typical"].copy()
 
-    def addIp(self, *ips: tuple[str, str]):
+    def addIp(self, *ips):
         for ip in ips:
             self.timingManager.addSearchPath(ip[0], ip[1])
             self.physicManager.searchForLibs(ip[1])
@@ -119,7 +119,7 @@ class PdConfig(object):
         self.physicManager # TODO
         return self
 
-    def addConsMode(self, *sdcs: tuple[str, str]):
+    def addConsMode(self, *sdcs):
         if len(sdcs) != 0:
             template = self.config['constraint'].pop('func')
         for sdc in sdcs:
