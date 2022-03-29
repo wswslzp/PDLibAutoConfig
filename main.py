@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import argparse as ap
 import jsonConfig, createTcl
 
