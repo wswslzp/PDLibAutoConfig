@@ -142,29 +142,35 @@ def searchForPhysicLib(path: str):
     return ret
 
 def searchForTimingLib(path: str):
-    from multiprocessing import Process
+    from multiprocessing import Process,Pool
     ret = []
-    process = []
-    def inlineFunc(path):
-        timingLib = scanTimingLib(path)
-        if timingLib.libName != "":
-            ret.append(timingLib)
-    for p, d, f in os.walk(path):
+    paths = []
+    # process = []
+    # def inlineFunc(path):
+    #     timingLib = scanTimingLib(path)
+    #     return timingLib
+        # if timingLib.libName != "":
+        #     logging.debug(timingLib.libName + ". Len of ret is {}".format(str(len(ret))))
+    # gen path
+    for p, _, f in os.walk(path):
         for lib in f:
             if lib.endswith(".lib") or lib.endswith(".lib.gz"):
-                logging.info("scanning {path}".format(path=os.path.join(p,lib)))
-                # timingLib = scanTimingLib(os.path.join(p, lib))
-                # if timingLib.libName != "":
-                #     ret.append(timingLib)
-                process.append(
-                    Process(target=inlineFunc, args=(os.path.join(p, lib),))
-                )
-    procid = 0
-    for p in process:
-        logging.debug("star proc id {}".format(procid))
-        p.start()
-        procid += 1
-    [p.join() for p in process]
+                abspath = os.path.join(p,lib)
+                # logging.info("scanning {path}".format(path=abspath))
+                paths.append(abspath)
+                # process.append(
+                #     Process(target=inlineFunc, args=(os.path.join(p, lib),))
+                # )
+    logging.debug("available path" + str(paths))
+    with Pool(4) as p:
+        ret = p.map(scanTimingLib, paths)
+    # procid = 0
+    # for p in process:
+    #     logging.debug("star proc id {}".format(procid))
+    #     p.start()
+    #     procid += 1
+    # [p.join() for p in process]
+    logging.debug("The ret len is " + str(len(ret)))
     return ret
 
 if __name__ == "__main__":
