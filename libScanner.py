@@ -123,6 +123,7 @@ def searchForPhysicLib(path: str):
     for p, d, f in os.walk(path):
         for lib in f:
             if lib.endswith(".lef") or lib.endswith(".plef"):
+                print("scanning {path}".format(path=os.path.join(p, lib)))
                 physicLib = scanPhysicLib(os.path.join(p, lib))
                 ret.append(physicLib)
     return ret
