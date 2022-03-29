@@ -1,3 +1,4 @@
+from concurrent.futures import process
 from libManager import *
 import json
 import os
@@ -109,8 +110,15 @@ class PdConfig(object):
             self.config["rcCorner"][corner] = template["rcCorner"]["typical"].copy()
 
     def scanIpTimingLibs(self, *ips):
+        from multiprocessing import Process
+        processes = []
         for ip in ips:
-            self.timingManager.addSearchPath(ip[0], ip[1])
+            # self.timingManager.addSearchPath(ip[0], ip[1])
+            processes.append(
+                Process(target=self.timingManager.addSearchPath, args=(ip[0], ip[1]))
+            )
+        [p.start() for p in processes]
+        [p.join() for p in processes]
 
     def scanIpPhysicLibs(self, *ips):
         for ip in ips:
