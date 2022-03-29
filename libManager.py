@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import prettytable as ppt
 from functools import reduce
 import platform
 
@@ -23,6 +22,7 @@ class PhysicLibManager(object):
         # layers = map(getLayerNum, techlefs)
 
     def printLayerTable(self):
+        import prettytable as ppt
         table = ppt.PrettyTable(['Name', 'Metal layers', 'Total'])
         self.techLefs.sort(key=lambda lef: len(lef.getAllLayers()))
         for tlef in self.techLefs:
@@ -33,6 +33,7 @@ class PhysicLibManager(object):
         print(table)
 
     def printMacroLefs(self):
+        import prettytable as ppt
         table = ppt.PrettyTable(['Name', 'File'])
         for mlef in self.macroLef:
             table.add_row([mlef.libName, mlef.libPath])
@@ -77,6 +78,7 @@ class TimingLibManager(object):
             else:
                 return "None"
         ps = list(set(self.getPVT("process")))
+        import prettytable as ppt
         for p in ps:
             p_libsManager = self.getSubManager("process", p)
             vs = list(set(p_libsManager.getPVT("voltage")))
