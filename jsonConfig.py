@@ -1,4 +1,5 @@
 from concurrent.futures import process
+import logging
 from libManager import *
 import json
 import os
@@ -114,10 +115,15 @@ class PdConfig(object):
         processes = []
         for ip in ips:
             # self.timingManager.addSearchPath(ip[0], ip[1])
+            logging.debug(ips)
             processes.append(
                 Process(target=self.timingManager.addSearchPath, args=(ip[0], ip[1]))
             )
-        [p.start() for p in processes]
+        procid = 0
+        for p in processes:
+            logging.debug("start proc {}".format(procid))
+            p.start()
+            procid += 1
         [p.join() for p in processes]
 
     def scanIpPhysicLibs(self, *ips):
