@@ -24,7 +24,7 @@ def scan(args):
         )
     else:
         config.addIp(
-            (args.ip, args.dir)
+            args.ip, args.dir
         )
     config.buildMmmcView()
     config.writeJson(args.output)
