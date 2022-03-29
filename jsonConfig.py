@@ -122,7 +122,7 @@ class PdConfig(object):
             self.physicManager.searchForLibs(ip[1])
 
     def showMetalAvail(self):
-        print(self.physicManager.printLayers())
+        self.physicManager.printLayers()
         return self
 
     def selectMetal(self, metalLayer: str = None):

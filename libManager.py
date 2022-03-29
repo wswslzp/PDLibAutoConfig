@@ -28,10 +28,16 @@ class PhysicLibManager(object):
         return None
 
     def printLayers(self):
+        print("###########################################")
+        print("#                 layer                   #")
+        print("###########################################")
+        self.techLefs.sort(key=lambda lef: len(lef.getAllLayers()))
         for tlef in self.techLefs:
             layers = tlef.getAllLayers()
             number = len(layers)
-            layers = str(reduce(lambda a,b: a + ", " + b, layers))
+            if number == 0: 
+                continue
+            layers = str(reduce(lambda a,b: a+", "+b, layers, " "))
             print('Name: ', tlef.libName, '; #Layer: ', number, ' -- ', layers)
 
     def printLayerTable(self):

@@ -1,6 +1,7 @@
 import os
 import gzip
 import re
+import logging
 
 def toStr(line):
     if type(line) is bytes:
@@ -32,9 +33,9 @@ class PhysicLib(object):
         )
         with open(self.libPath, "r") as lef:
             content = lef.read()
-            if self.libPath.endswith("*.lef") or self.libPath.endswith("*.plef"):
+            if self.libPath.endswith(".lef") or self.libPath.endswith(".plef"):
                 layers = layer_p.findall(content)
-            elif self.libPath.endswith("*.tf"):
+            elif self.libPath.endswith(".tf"):
                 layers = tf_layer_p.findall(content)
             else:
                 layers = []
@@ -60,6 +61,8 @@ class TimingLib(object):
             self.corner["process"] = "tt"
         elif "ss" in name:
             self.corner["process"] = "ss"
+        else:
+            logging.warn("unknown process: {}".format(name))
 
     def scanForName(self, content):
         ret = False
@@ -133,7 +136,7 @@ def searchForPhysicLib(path: str):
     for p, d, f in os.walk(path):
         for lib in f:
             if lib.endswith(".lef") or lib.endswith(".plef") or lib.endswith(".tf"):
-                print("scanning {path}".format(path=os.path.join(p, lib)))
+                logging.info("scanning {path}".format(path=os.path.join(p, lib)))
                 physicLib = scanPhysicLib(os.path.join(p, lib))
                 ret.append(physicLib)
     return ret
@@ -143,7 +146,7 @@ def searchForTimingLib(path: str):
     for p, d, f in os.walk(path):
         for lib in f:
             if lib.endswith(".lib") or lib.endswith(".lib.gz"):
-                print("scanning {path}".format(path=os.path.join(p,lib)))
+                logging.info("scanning {path}".format(path=os.path.join(p,lib)))
                 timingLib = scanTimingLib(os.path.join(p, lib))
                 if timingLib.libName != "":
                     ret.append(timingLib)
