@@ -2,6 +2,7 @@ import os
 import gzip
 import re
 import logging
+import time
 
 def toStr(line):
     if type(line) is bytes:
@@ -151,8 +152,10 @@ def searchForTimingLib(path: str, parallel: int = 1):
                 abspath = os.path.join(p,lib)
                 paths.append(abspath)
     logging.debug("available path" + str(paths))
+    start_time = time.time()
     with Pool(parallel) as p:
         ret = p.map(scanTimingLib, paths)
+    logging.debug(f"Time consume: {time.time() - start_time:.1f}")
     logging.debug("The ret len is " + str(len(ret)))
     return ret
 
