@@ -55,7 +55,7 @@ class TclFactory(object):
         ret = ""
         for corner in self.getJsonConfig['delayCorner']:
             ret += "create_delay_corner -name " + corner
-            ret += " -rc_corner" + self.getJsonConfig['delayCorner'][corner]['rcCorner']
+            ret += " -rc_corner " + self.getJsonConfig['delayCorner'][corner]['rcCorner']
             # TODO: early lib set and late lib set
             if not isOCV:
                 ret += " -libraray_set " + "{" + self.getJsonConfig['delayCorner'][corner]['library'] + "}\n"

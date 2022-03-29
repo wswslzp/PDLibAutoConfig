@@ -113,10 +113,26 @@ class PdConfig(object):
             self.timingManager.addSearchPath(ip[0], ip[1])
             self.physicManager.searchForLibs(ip[1])
 
-    def selectMetal(self, metalLayer: str):
+    def showMetalAvail(self):
+        print(self.physicManager.printLayers())
+        return self
+
+    def selectMetal(self, metalLayer: str = None):
         # self.physicManager.printLayerTable()
         # self.config['physicalData']['lef'] = 
-        self.physicManager # TODO
+        # self.physicManager # TODO
+        if metalLayer != None:
+            if metalLayer in [x.libName for x in self.physicManager.techLefs]:
+                self.config["physicalData"]["lef"].append(
+                    self.physicManager.getTechLefPath(metalLayer)
+                )
+        return self
+
+    def setupLef(self, metalLayer: str=None):
+        self.selectMetal(metalLayer)
+        self.config["physicalData"]["lef"] += [
+            lib.libPath for lib in self.physicManager.macroLef
+        ]
         return self
 
     def addConsMode(self, *sdcs):

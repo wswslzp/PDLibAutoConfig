@@ -141,8 +141,8 @@ def searchForTimingLib(path: str):
 
 if __name__ == "__main__":
     # libs = searchForTimingLib("testLib/lib")
-    # lefs = searchForPhysicLib("/mnt/d/lzp/tmp/umc/55ulpuhvt/fsf0u_juu/2017Q3v1.0")
-    lefs = searchForPhysicLib("D:/lzp/tmp/umc/55ulpuhvt/fsf0u_juu/2017Q3v1.0")
+    lefs = searchForPhysicLib("/mnt/d/lzp/tmp/umc/55ulpuhvt/fsf0u_juu/2017Q3v1.0")
+    # lefs = searchForPhysicLib("D:/lzp/tmp/umc/55ulpuhvt/fsf0u_juu/2017Q3v1.0")
     techlefs = list(filter(lambda lef: lef.isTechLef(), lefs))
     print(techlefs[0].getAllLayers())
     print("")

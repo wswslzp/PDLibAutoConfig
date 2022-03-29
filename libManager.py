@@ -2,6 +2,8 @@
 from functools import reduce
 import platform
 
+from matplotlib.pyplot import table
+
 import libScanner
 
 class PhysicLibManager(object):
@@ -21,6 +23,20 @@ class PhysicLibManager(object):
         self.macroLef += list(filter(lambda lef: not lef.isTechLef(), lefs))
         # layers = map(getLayerNum, techlefs)
 
+    def getTechLefPath(self, lefName: str): 
+        for lef in [x for x in self.techLefs]:
+            if lefName == lef.libName:
+                return lef.libPath
+        print("Metal layer: {m} not found.".format(m=lefName))
+        return None
+
+    def printLayers(self):
+        for tlef in self.techLefs:
+            layers = tlef.getAllLayers()
+            number = len(layers)
+            layers = str(reduce(lambda a,b: a + ", " + b, layers))
+            print('Name: ', tlef.libName, '; #Layer: ', number, ' -- ', layers)
+
     def printLayerTable(self):
         import prettytable as ppt
         table = ppt.PrettyTable(['Name', 'Metal layers', 'Total'])
@@ -32,7 +48,7 @@ class PhysicLibManager(object):
             table.add_row([tlef.libName, layers, number])
         print(table)
 
-    def printMacroLefs(self):
+    def printMacroTable(self):
         import prettytable as ppt
         table = ppt.PrettyTable(['Name', 'File'])
         for mlef in self.macroLef:
@@ -125,5 +141,5 @@ if __name__ == "__main__":
         libm.searchForLibs("/mnt/d/lzp/tmp/umc/55ulpuhvt/fsf0u_juu/2017Q3v1.0")
     # libm.printCornerTable()
     libm.printLayerTable()
-    libm.printMacroLefs()
+    libm.printMacroTable()
     print("")
