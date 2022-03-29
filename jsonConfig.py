@@ -125,9 +125,8 @@ class PdConfig(object):
             self.physicManager.searchForLibs(ip[1])
 
     def addIp(self, *ips):
-        for ip in ips:
-            self.timingManager.addSearchPath(ip[0], ip[1])
-            self.physicManager.searchForLibs(ip[1])
+        self.scanIpTimingLibs(ips)
+        self.scanIpPhysicLibs(ips)
 
     def showMetalAvail(self):
         self.physicManager.printLayers()
