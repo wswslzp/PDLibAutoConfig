@@ -3,6 +3,7 @@ import gzip
 import re
 import logging
 import time
+from functools import reduce
 
 def toStr(line):
     if type(line) is bytes:
@@ -126,6 +127,7 @@ def scanPhysicLib(libPath: str):
 def scanTimingLib(libPath: str):
     ret = TimingLib()
     ret.libPath = libPath
+    logging.debug(f"Scan {libPath}")
     if libPath.endswith(".lib"):
         with open(libPath, "r") as libf:
             ret = ret.scanContent(libf)
@@ -155,7 +157,8 @@ def searchForTimingLib(path: str, parallel: int = 1):
             if lib.endswith(".lib") or lib.endswith(".lib.gz"):
                 abspath = os.path.join(p,lib)
                 paths.append(abspath)
-    logging.debug("available path" + str(paths))
+    paths_str = reduce(lambda a,b: a+"\n"+b, paths)
+    logging.debug("available path:\n" + paths_str)
     start_time = time.time()
     with Pool(parallel) as p:
         ret = p.map(scanTimingLib, paths)
