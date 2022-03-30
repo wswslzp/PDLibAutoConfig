@@ -64,6 +64,7 @@ class TimingLib(object):
             self.corner["process"] = "ss"
         else:
             logging.warn("unknown process: {}".format(name))
+        logging.debug(f"Got Process: {self.corner['process']}")
 
     def scanForName(self, content):
         ret = False
@@ -72,7 +73,7 @@ class TimingLib(object):
             pat = re.compile(r"\s*library\s*\(\s*(\w+)\s*\)\s*\{")
             if pat.match(line):
                 self.libName = pat.findall(line)[0]
-                self.getProcessFromName(self.libName)
+                # self.getProcessFromName(self.libName)
                 ret = True
                 break
         return ret
@@ -110,9 +111,7 @@ class TimingLib(object):
             assert False, "temperature isn't catched."
 
     def scanContent(self, content):
-        libName = self.scanForName(content)
-        if libName:
-            logging.debug(f"Lib process {libName}")
+        if self.scanForName(content):
             self.scanForPVT(content)
             self.check()
         return self
