@@ -81,9 +81,11 @@ class TimingLib(object):
     
     def scanForPVT(self, content):
         p_pat = re.compile(r"\s*operating_conditions\s*\(\s*(\w+)\s*\)")
-        nt_pat = re.compile(r"\s*temperature\s*:\s*(-?[1-9]\d*|0)\s*;")
-        nv_pat = re.compile(r"\s*voltage\s*:\s*([1-9]\d*\.\d*|0\.\d*[1-9]\d*)\s*;")
+        nt_pat = re.compile(r"\s*nom_temperature\s*:\s*(-?[0-9]\d*\.?\d*|0\.\d*[1-9])\s*;")
+        nv_pat = re.compile(r"\s*nom_voltage\s*:\s*([1-9]\d*\.\d*|0\.\d*[1-9]\d*)\s*;")
         matched = 0
+        logging.debug(f"Current lib name is {self.libName}")
+        logging.debug(f"Current lib path is {self.libPath}")
         for line in content:
             line = toStr(line)
             if p_pat.match(line):

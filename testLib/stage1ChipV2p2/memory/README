@@ -1,0 +1,7 @@
+This is the memory list used in stage1. 
+
+* mem40lpw512d96sp
+* mem40lpw128d112tp
+* mem40lpw3328d22sp
+
+The db directory include three corner db files. (ff1p21vn40c, ss0p99v125c, tt1p1v25c) Each file in the directory are all named with corresponding suffix, e.g. mem40lpw512d96spff.db. 
