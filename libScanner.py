@@ -87,13 +87,16 @@ class TimingLib(object):
             if p_pat.match(line):
                 self.cornerName = p_pat.findall(line)[0]
                 if self.corner["process"] == "":
+                    logging.debug(f"Got corner {self.cornerName}")
                     self.getProcessFromName(self.cornerName)
                 matched += 1
             if nt_pat.match(line):
                 self.corner["temperature"] = nt_pat.findall(line)[0]
+                logging.debug(f"Got temp {self.corner['temperature']}")
                 matched += 1
             if nv_pat.match(line):
                 self.corner["voltage"] = nv_pat.findall(line)[0]
+                logging.debug(f"Got voltage {self.corner['voltage']}")
                 matched += 1
             if matched == 3:
                 break
@@ -107,7 +110,9 @@ class TimingLib(object):
             assert False, "temperature isn't catched."
 
     def scanContent(self, content):
-        if self.scanForName(content):
+        libName = self.scanForName(content)
+        if libName:
+            logging.debug(f"Lib process {libName}")
             self.scanForPVT(content)
             self.check()
         return self

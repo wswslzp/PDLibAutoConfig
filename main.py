@@ -47,7 +47,6 @@ if __name__ == "__main__":
     subparsers = parser.add_subparsers(help="sub parser description")
 
     scanParser = subparsers.add_parser("scan")
-    # scanParser.set_defaults(scanner=)
     scanParser.add_argument("--ip", help="IP Name", required=True)
     scanParser.add_argument("--dir", help="IP directory", required=True)
     scanParser.add_argument("-o", "--output", help="output json config file name", required=False, default="config.json")
