@@ -5,3 +5,5 @@
 *.io
 *.json
 tmp/
+testLib/
+
