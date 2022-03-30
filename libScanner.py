@@ -73,7 +73,7 @@ class TimingLib(object):
             pat = re.compile(r"\s*library\s*\(\s*(\w+)\s*\)\s*\{")
             if pat.match(line):
                 self.libName = pat.findall(line)[0]
-                # self.getProcessFromName(self.libName)
+                logging.debug(f"Lib {self.libName}")
                 ret = True
                 break
         return ret
