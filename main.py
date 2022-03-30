@@ -30,6 +30,14 @@ def scan(args):
     config.writeJson(args.output)
     if args.show_metal:
         config.showMetalAvail()
+    if args.print_table != None:
+        if args.print_table == 'corner':
+            for tm in config.timingManager.subLibsManager:
+                tm.printCornerTable()
+        elif args.print_table == 'metal':
+            config.physicManager.printLayers()
+        elif args.print_table == 'macro':
+            config.physicManager.printMacroTable()
     return args
 
 def view(args):
@@ -54,6 +62,7 @@ if __name__ == "__main__":
     scanParser.add_argument("--only-physic", help="only scan for physical libraries", action="store_true")
     scanParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
     scanParser.add_argument("--multi-proc", type=int, help="enable multi-thread scanning", required=False, default=4)
+    scanParser.add_argument("--print-table", choices=['corner', 'metal', 'macro'])
     scanParser.set_defaults(show_metal=False)
     scanParser.set_defaults(only_physic=False)
     scanParser.set_defaults(func=scan)
