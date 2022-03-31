@@ -132,7 +132,7 @@ class PdConfig(object):
         # self.physicManager # TODO
         if metalLayer != None:
             if metalLayer in [x.libName for x in self.physicManager.techLefs]:
-                self.config['phyiscalData']['lef'].insert(
+                self.config['physicalData']['lef'].insert(
                     0, self.physicManager.getTechLefPath(metalLayer)
                 )
         return self
