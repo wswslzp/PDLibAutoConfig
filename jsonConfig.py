@@ -97,7 +97,7 @@ template = {
 def getOpcond(p: str, v: str, t: str):
     pstr = p
     vstr = 'v' + str(v).replace('.', 'p')
-    tstr = 't' + str(int(t)).replace('-', 'n')+'c'
+    tstr = 't' + str(int(float(t))).replace('-', 'n')+'c'
     return pstr + vstr + tstr
 
 class PdConfig(object):
