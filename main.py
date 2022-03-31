@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     parser = ap.ArgumentParser()
 
-    subparsers = parser.add_subparsers(help="sub parser description")
+    subparsers = parser.add_subparsers(help="choose the script stage.")
 
     scanParser = subparsers.add_parser("scan")
     scanParser.add_argument("--ip", help="IP Name", required=True)

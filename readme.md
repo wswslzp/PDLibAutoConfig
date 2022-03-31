@@ -18,7 +18,7 @@ The script has two step to use,
 usage: main.py [-h] {scan,view} ...
 
 positional arguments:
-  {scan,view}  sub parser description
+  {scan,view}  choose the script stage.
 
 optional arguments:
   -h, --help   show this help message and exit
