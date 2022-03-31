@@ -27,7 +27,9 @@ def scan(args):
             args.ip, args.dir, parallel=args.multi_proc
         )
     config.buildMmmcView()
-    config.writeJson(args.output)
+    config.setupLef(args.metal)
+    if not args.no_output:
+        config.writeJson(args.output)
     if args.show_metal:
         config.showMetalAvail()
     if args.print_table != None:
@@ -42,8 +44,6 @@ def scan(args):
 
 def view(args):
     config = jsonConfig.PdConfig().readJson(args.json)
-    if args.metal != None:
-        config.setupLef(args.metal)
     factory = createTcl.TclFactory(config)
     factory.printMMMCFile(args.output)
     return args
@@ -63,14 +63,16 @@ if __name__ == "__main__":
     scanParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
     scanParser.add_argument("--multi-proc", type=int, help="enable multi-thread scanning", required=False, default=4)
     scanParser.add_argument("--print-table", choices=['corner', 'metal', 'macro'])
+    scanParser.add_argument("--metal", help="select the metal layers set")
+    scanParser.add_argument("--no-output", help="Don't output json file.", action="store_true")
     scanParser.set_defaults(show_metal=False)
     scanParser.set_defaults(only_physic=False)
+    scanParser.set_defaults(no_output=False)
     scanParser.set_defaults(func=scan)
 
     viewParser = subparsers.add_parser("view")
     viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json")
     viewParser.add_argument('-o', '--output', help="output view file", required=True)
-    viewParser.add_argument('--metal', help="select the metal layers set")
     viewParser.set_defaults(func=view)
 
     args = parser.parse_args()
