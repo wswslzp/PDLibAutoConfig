@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     viewParser = subparsers.add_parser("view")
     viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json")
-    viewParser.add_argument("--io", help="input io file", required=False)
+    viewParser.add_argument("--io", help="input io file", required=False, default="")
     viewParser.add_argument('-o', '--output', help="output view file", required=True)
     viewParser.add_argument("-g", "--global-file", help="output global file")
     viewParser.set_defaults(func=view)
