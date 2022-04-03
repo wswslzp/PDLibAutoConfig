@@ -10,8 +10,9 @@ def findQrcTechFile(path: str):
     }
     for p,_,fs in os.walk(path):
         for f in fs:
-            f_abspath = os.path.join(p, f)
-            for rc in ret:
-                if rc in f_abspath:
-                    ret[rc] = f_abspath
+            if 'qrcTechFile' == f:
+                f_abspath = os.path.join(p, f)
+                for rc in ret:
+                    if rc in f_abspath:
+                        ret[rc] = f_abspath
     return ret
