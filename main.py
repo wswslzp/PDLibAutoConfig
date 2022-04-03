@@ -3,6 +3,7 @@ import logging
 import argparse as ap
 import jsonConfig, createTcl
 import re
+from qrcFinder import findQrcTechFile
 
 def setLogLevel(args):
     if args.log_level == 'critical':
@@ -42,6 +43,10 @@ def scan(args):
                         }
                     }
         config.cleanConsMode()
+    if args.pdk != None:
+        qrcs = findQrcTechFile(args.pdk)
+        for rc in qrcs:
+            config.config['rcCorner'][rc]['qrcTechFile'] = qrcs[rc]
     config.buildMmmcView()
     config.setupLef(args.metal)
     if not args.no_output:
@@ -79,6 +84,7 @@ if __name__ == "__main__":
     scanParser.add_argument("--ip", help="IP Name", required=True)
     scanParser.add_argument("--dir", help="IP directory", required=True)
     scanParser.add_argument("--sdc", help="input sdc constraint file; format: MODE1:SDC_PATH1;MODE2:SDC_PATH2", default="")
+    scanParser.add_argument("--pdk", help="The path to PDK, used to find qrctechfile")
     scanParser.add_argument("-o", "--output", help="output json config file name", required=False, default="config.json")
     scanParser.add_argument("--show-metal", help="show metal layer", action="store_true")
     scanParser.add_argument("--only-physic", help="only scan for physical libraries", action="store_true")
