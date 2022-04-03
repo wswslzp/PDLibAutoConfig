@@ -45,6 +45,8 @@ def scan(args):
 def view(args):
     config = jsonConfig.PdConfig().readJson(args.json)
     config.config['designData']['ioFile'] = args.io
+    config.config['designData']['netlist'] = args.netlist
+    config.config['constraint']['sdc']['preCTS'] = args.sdc
     factory = createTcl.TclFactory(config)
     factory.printMMMCFile(args.output)
     factory.printGlobals(args.global_file)
@@ -75,6 +77,8 @@ if __name__ == "__main__":
     viewParser = subparsers.add_parser("view")
     viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json")
     viewParser.add_argument("--io", help="input io file", required=False, default="")
+    viewParser.add_argument("--sdc", help="input sdc constraint file", default="")
+    viewParser.add_argument("--netlist", help="input netlist file", default="")
     viewParser.add_argument('-o', '--output', help="output view file", required=True)
     viewParser.add_argument("-g", "--global-file", help="output global file")
     viewParser.set_defaults(func=view)
