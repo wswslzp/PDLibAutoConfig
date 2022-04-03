@@ -18,7 +18,7 @@ class TclFactory(object):
         for rc in self.getJsonConfig['rcCorner']:
             ret += "create_rc_corner"
             ret += " -name " + rc 
-            ret += " -T" + str(self.getJsonConfig['rcCorner'][rc]['temperature'])
+            ret += " -T " + str(self.getJsonConfig['rcCorner'][rc]['temperature'])
             ret += " -preRoute_res " + str(self.getJsonConfig['rcCorner'][rc]['factor']['preRoute']['resistance']).replace('[','{').replace(']', '}')
             ret += " -preRoute_cap "+ str(self.getJsonConfig['rcCorner'][rc]['factor']['preRoute']['capacitance']).replace('[','{').replace(']', '}')
             ret += " -preRoute_clkres "+ str(self.getJsonConfig['rcCorner'][rc]['factor']['preRoute']['clockResistance']).replace('[','{').replace(']', '}')
