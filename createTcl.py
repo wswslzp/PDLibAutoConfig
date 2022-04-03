@@ -52,6 +52,8 @@ class TclFactory(object):
             if self.getJsonConfig['constraint'][cons]['sdcFile']['preCTS'] != "":
                 ret += "create_constraint_mode -name " + cons 
                 ret += " -sdc_files {" + self.getJsonConfig['constraint'][cons]['sdcFile']['preCTS'] + "}\n"
+            else:
+                self.getJsonConfig['constraint'].pop(cons)
         return ret
 
     def printDelayCorner(self, isOCV: bool = False):
