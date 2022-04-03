@@ -158,6 +158,7 @@ class PdConfig(object):
         tmp = self.config['constraint'].copy()
         for mode in tmp:
             if tmp[mode]['sdcFile']['preCTS'] == "":
+                logging.debug(f"clean mode {mode}")
                 self.config['constraint'].pop(mode)
         return self
 

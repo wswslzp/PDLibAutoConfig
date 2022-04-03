@@ -45,6 +45,7 @@ def scan(args):
 
 def view(args):
     config = jsonConfig.PdConfig().readJson(args.json)
+    setLogLevel(args)
     config.config['designData']['ioFile'] = args.io
     config.config['designData']['netlist'] = args.netlist
     sdc_parser = re.compile(r"(\w+):([\w\W]+?\.sdc)")
@@ -90,6 +91,7 @@ if __name__ == "__main__":
     scanParser.set_defaults(func=scan)
 
     viewParser = subparsers.add_parser("view")
+    scanParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
     viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json")
     viewParser.add_argument("--io", help="input io file", required=False, default="")
     viewParser.add_argument("--sdc", help="input sdc constraint file; format: MODE1:SDC_PATH1;MODE2:SDC_PATH2", default="")
