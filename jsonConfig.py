@@ -18,8 +18,8 @@ template = {
         "floorPlan": "",
         "ioFile": "",
         "powerGround": {
-            "power": ["VDD_CORE","VDD_IO"],
-            "ground": ["VSS_CORE","VDD_IO"]
+            "power": ["VDD_CORE"],
+            "ground": ["VSS_CORE"]
         },
         "ctsCell": [],
         "flow": "mmmc",
