@@ -51,6 +51,7 @@ def view(args):
     if sdc_parser.match(args.sdc):
         for mode, sdc in sdc_parser.findall(args.sdc):
             config.config['constraint'][mode]['sdcFile']['preCTS'] = sdc
+    config.writeJson(args.json)
     factory = createTcl.TclFactory(config)
     factory.printMMMCFile(args.output)
     factory.printGlobals(args.global_file)
