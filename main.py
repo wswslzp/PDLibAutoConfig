@@ -27,6 +27,21 @@ def scan(args):
         config.addIp(
             args.ip, args.dir, parallel=args.multi_proc
         )
+    if args.sdc != "":
+        sdc_parser = re.compile(r"(\w+):([\w\W]+?\.sdc)")
+        if sdc_parser.match(args.sdc):
+            for mode, sdc in sdc_parser.findall(args.sdc):
+                if mode in config.config['constraint']:
+                    config.config['constraint'][mode]['sdcFile']['preCTS'] = sdc
+                else:
+                    config.config['constraint'][mode] = {
+                        "sdcFile": {
+                            "preCTS": sdc,
+                            "incrCTS": "",
+                            "postCTS": ""
+                        }
+                    }
+        config.cleanConsMode()
     config.buildMmmcView()
     config.setupLef(args.metal)
     if not args.no_output:
@@ -48,20 +63,6 @@ def view(args):
     setLogLevel(args)
     config.config['designData']['ioFile'] = args.io
     config.config['designData']['netlist'] = args.netlist
-    sdc_parser = re.compile(r"(\w+):([\w\W]+?\.sdc)")
-    if sdc_parser.match(args.sdc):
-        for mode, sdc in sdc_parser.findall(args.sdc):
-            if mode in config.config['constraint']:
-                config.config['constraint'][mode]['sdcFile']['preCTS'] = sdc
-            else:
-                config.config['constraint'][mode] = {
-                    "sdcFile": {
-                        "preCTS": sdc,
-                        "incrCTS": "",
-                        "postCTS": ""
-                    }
-                }
-    config.cleanConsMode()
     config.writeJson(args.json)
     factory = createTcl.TclFactory(config)
     factory.printMMMCFile(args.output)
@@ -77,6 +78,7 @@ if __name__ == "__main__":
     scanParser = subparsers.add_parser("scan")
     scanParser.add_argument("--ip", help="IP Name", required=True)
     scanParser.add_argument("--dir", help="IP directory", required=True)
+    scanParser.add_argument("--sdc", help="input sdc constraint file; format: MODE1:SDC_PATH1;MODE2:SDC_PATH2", default="")
     scanParser.add_argument("-o", "--output", help="output json config file name", required=False, default="config.json")
     scanParser.add_argument("--show-metal", help="show metal layer", action="store_true")
     scanParser.add_argument("--only-physic", help="only scan for physical libraries", action="store_true")
@@ -94,7 +96,6 @@ if __name__ == "__main__":
     viewParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
     viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json")
     viewParser.add_argument("--io", help="input io file", required=False, default="")
-    viewParser.add_argument("--sdc", help="input sdc constraint file; format: MODE1:SDC_PATH1;MODE2:SDC_PATH2", default="")
     viewParser.add_argument("--netlist", help="input netlist file", default="")
     viewParser.add_argument('-o', '--output', help="output view file", required=True)
     viewParser.add_argument("-g", "--global-file", help="output global file")
