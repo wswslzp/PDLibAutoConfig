@@ -102,7 +102,7 @@ class TclFactory(object):
             content += "set init_mmmc_file {" + self.mmmcPath + "}\n"
             content += "set init_pwr_net {" + mkString(self.config.config['designData']['powerGround']['power']) + "}\n"
             content += "set init_gnd_net {" + mkString(self.config.config['designData']['powerGround']['ground']) + "}\n"
-            content += "set init_io_file {" + self.config.config['designData']['ioFile']
+            content += "set init_io_file {" + self.config.config['designData']['ioFile'] +" }\n"
             content += "set init_top_cell {" + self.config.config['designData']['design'] + "}\n"
             content += "set init_verilog {" + self.config.config['designData']['netlist'] + "}\n"
             f.write(content)
