@@ -16,9 +16,10 @@ template = {
         "netlist": "",
         "design": "",
         "floorPlan": "",
+        "ioFile": "",
         "powerGround": {
-            "power": "VDD_CORE",
-            "ground": "VSS_CORE"
+            "power": ["VDD_CORE"],
+            "ground": ["VSS_CORE"]
         },
         "ctsCell": [],
         "flow": "mmmc",

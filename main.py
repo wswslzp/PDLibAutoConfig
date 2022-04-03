@@ -44,8 +44,10 @@ def scan(args):
 
 def view(args):
     config = jsonConfig.PdConfig().readJson(args.json)
+    config.config['designData']['ioFile'] = args.io
     factory = createTcl.TclFactory(config)
     factory.printMMMCFile(args.output)
+    factory.printGlobals(args.global_file)
     return args
 
 if __name__ == "__main__":
@@ -72,7 +74,9 @@ if __name__ == "__main__":
 
     viewParser = subparsers.add_parser("view")
     viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json")
+    viewParser.add_argument("--io", help="input io file", required=False)
     viewParser.add_argument('-o', '--output', help="output view file", required=True)
+    viewParser.add_argument("-g", "--global-file", help="output global file")
     viewParser.set_defaults(func=view)
 
     args = parser.parse_args()
