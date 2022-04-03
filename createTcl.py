@@ -96,8 +96,8 @@ class TclFactory(object):
 ###############################################################
 #
 # Version 1.1
-#
-            """
+#\n
+"""
             content += "set init_lef_file {" + mkString(self.config.config['physicalData']['lef']) + "}\n"
             content += "set init_mmmc_file {" + self.mmmcPath + "}\n"
             content += "set init_pwr_net {" + mkString(self.config.config['designData']['powerGround']['power']) + "}\n"
