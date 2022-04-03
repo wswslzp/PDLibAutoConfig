@@ -50,7 +50,16 @@ def view(args):
     sdc_parser = re.compile(r"(\w+):([\w\W]+?\.sdc)")
     if sdc_parser.match(args.sdc):
         for mode, sdc in sdc_parser.findall(args.sdc):
-            config.config['constraint'][mode]['sdcFile']['preCTS'] = sdc
+            if mode in config.config['constraint']:
+                config.config['constraint'][mode]['sdcFile']['preCTS'] = sdc
+            else:
+                config.config['constraint'][mode] = {
+                    "sdcFile": {
+                        "preCTS": sdc,
+                        "incrCTS": "",
+                        "postCTS": ""
+                    }
+                }
     config.writeJson(args.json)
     factory = createTcl.TclFactory(config)
     factory.printMMMCFile(args.output)
