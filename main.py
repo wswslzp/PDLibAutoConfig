@@ -47,9 +47,9 @@ def view(args):
     config = jsonConfig.PdConfig().readJson(args.json)
     config.config['designData']['ioFile'] = args.io
     config.config['designData']['netlist'] = args.netlist
-    sdc_parser = re.compile(r"(\w+):([\w\W]+.sdc)")
+    sdc_parser = re.compile(r"(\w+):([\w\W]+?.sdc)")
     if sdc_parser.match(args.sdc):
-        for mode, sdc,_ in sdc_parser.findall(args.sdc):
+        for mode, sdc in sdc_parser.findall(args.sdc):
             config.config['constraint'][mode]['sdcFile']['preCTS'] = sdc
     config.writeJson(args.json)
     factory = createTcl.TclFactory(config)
