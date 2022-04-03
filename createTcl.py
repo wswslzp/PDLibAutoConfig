@@ -29,6 +29,7 @@ class TclFactory(object):
             ret += " -postRoute_clkcap "+ str(self.getJsonConfig['rcCorner'][rc]['factor']['postRoute']['clockCapacitance']).replace('[','{').replace(']', '}')
             ret += " -postRoute_xcap "+ str(self.getJsonConfig['rcCorner'][rc]['factor']['postRoute']['resistance']).replace('[','{').replace(']', '}')
             ret += " -postRoute_clkxcap "+ str(self.getJsonConfig['rcCorner'][rc]['factor']['postRoute']['resistance']).replace('[','{').replace(']', '}')
+            ret += " -qx_tech_file " + str(self.getJsonConfig['rcCorner'][rc]['qrcTechFile'])
             ret += "\n"
         return ret
 
