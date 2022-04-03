@@ -154,6 +154,13 @@ class PdConfig(object):
             self.config['constraint'][mode] = template.copy()
             self.config['constraint'][mode]['sdcFile']['preCTS'] = sdcPath
 
+    def cleanConsMode(self):
+        tmp = self.config['constraint'].copy()
+        for mode in tmp:
+            if tmp[mode]['sdcFile']['preCTS'] == "":
+                self.config['constraint'].pop(mode)
+        return self
+
     def buildLibarySets(self):
         """
         The first step of build delay corners. This function is to group the 

@@ -60,6 +60,7 @@ def view(args):
                         "postCTS": ""
                     }
                 }
+    config.cleanConsMode()
     config.writeJson(args.json)
     factory = createTcl.TclFactory(config)
     factory.printMMMCFile(args.output)
