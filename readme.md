@@ -29,26 +29,30 @@ optional arguments:
 The option that scan stage use,
 
 ```bash
-usage: main.py scan [-h] --ip IP --dir DIR [--sdc SDC] [--pdk PDK] [-o OUTPUT]
-                    [--show-metal] [--only-physic]
+usage: main.py scan [-h] --ip <IP_NAME> --dir <IP_DIR>
+                    [--sdc <MODE1:SDC_PATH1;MODE2:SDC_PATH2;...>]
+                    [--cons <MODE> <SDC_PATH>] [--pdk <PDK_PATH>]
+                    [-o <CONFIG_PATH>] [--show-metal] [--only-physic]
                     [--log-level {critical,error,warn,info,debug}]
-                    [--multi-proc MULTI_PROC]
+                    [--multi-proc <NUMBER OF PROCESSOR>]
                     [--print-table {corner,metal,macro}] [--metal METAL]
                     [--no-output]
 
 optional arguments:
   -h, --help            show this help message and exit
-  --ip IP               IP Name
-  --dir DIR             IP directory
-  --sdc SDC             input sdc constraint file; format:
-                        MODE1:SDC_PATH1;MODE2:SDC_PATH2
-  --pdk PDK             The path to PDK, used to find qrctechfile
-  -o OUTPUT, --output OUTPUT
+  --ip <IP_NAME>        IP Name
+  --dir <IP_DIR>        IP directory
+  --sdc <MODE1:SDC_PATH1;MODE2:SDC_PATH2;...>
+                        input sdc constraint file
+  --cons <MODE> <SDC_PATH>
+                        input modes and sdcs. can be used multiple times
+  --pdk <PDK_PATH>      The path to PDK, used to find qrctechfile
+  -o <CONFIG_PATH>, --output <CONFIG_PATH>
                         output json config file name
   --show-metal          show metal layer
   --only-physic         only scan for physical libraries
   --log-level {critical,error,warn,info,debug}
-  --multi-proc MULTI_PROC
+  --multi-proc <NUMBER OF PROCESSOR>
                         enable multi-thread scanning
   --print-table {corner,metal,macro}
   --metal METAL         select the metal layers set
@@ -82,18 +86,21 @@ then you should pass the option `func:~/home/Data1/hello/world/func.sdc;test:~/h
 
 ```bash 
 usage: main.py view [-h] [--log-level {critical,error,warn,info,debug}]
-                    [-j JSON] [--io IO] [--netlist NETLIST] -o OUTPUT
-                    [-g GLOBAL_FILE]
+                    [-j <CONFIG_PATH>] [--io <IO_FILE>]
+                    [--netlist <NETLIST_FILE>] -o <OUTPUT_PATH>
+                    [-g <GLOBALS PATH>]
 
 optional arguments:
   -h, --help            show this help message and exit
   --log-level {critical,error,warn,info,debug}
-  -j JSON, --json JSON  input config json file
-  --io IO               input io file
-  --netlist NETLIST     input netlist file
-  -o OUTPUT, --output OUTPUT
+  -j <CONFIG_PATH>, --json <CONFIG_PATH>
+                        input config json file
+  --io <IO_FILE>        input io file
+  --netlist <NETLIST_FILE>
+                        input netlist file
+  -o <OUTPUT_PATH>, --output <OUTPUT_PATH>
                         output view file
-  -g GLOBAL_FILE, --global-file GLOBAL_FILE
+  -g <GLOBALS PATH>, --global-file <GLOBALS PATH>
                         output global file
 ```
 `-j JSON` set the configuration json file name. By default, it's `config.json`.

@@ -95,7 +95,6 @@ def master(args):
 if __name__ == "__main__":
 
     parser = ap.ArgumentParser()
-    parser.add_argument('shit')
     parser.add_argument('-v', '--version', action="store_true", help="show version.")
     parser.set_defaults(version=False)
     parser.set_defaults(func=master)
