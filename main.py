@@ -43,6 +43,20 @@ def scan(args):
                         }
                     }
         config.cleanConsMode()
+    if args.cons is not None:
+        for con in args.cons:
+            mode = con[0]
+            sdc = con[1]
+            if mode in config.config['constraint']:
+                config.config['constraint'][mode]['sdcFile']['preCTS'] = sdc
+            else:
+                config.config['constraint'][mode] = {
+                    "sdcFile": {
+                        "preCTS": sdc,
+                        "incrCTS": "",
+                        "postCTS": ""
+                    }
+                }
     if args.pdk != None:
         qrcs = findQrcTechFile(args.pdk)
         for rc in qrcs:
@@ -74,22 +88,31 @@ def view(args):
     factory.printGlobals(args.global_file)
     return args
 
+def master(args):
+    print("1.0")
+    return args
+
 if __name__ == "__main__":
 
     parser = ap.ArgumentParser()
+    parser.add_argument('shit')
+    parser.add_argument('-v', '--version', action="store_true", help="show version.")
+    parser.set_defaults(version=False)
+    parser.set_defaults(func=master)
 
     subparsers = parser.add_subparsers(help="choose the script stage.")
 
     scanParser = subparsers.add_parser("scan")
-    scanParser.add_argument("--ip", help="IP Name", required=True)
-    scanParser.add_argument("--dir", help="IP directory", required=True)
-    scanParser.add_argument("--sdc", help="input sdc constraint file; format: MODE1:SDC_PATH1;MODE2:SDC_PATH2", default="")
-    scanParser.add_argument("--pdk", help="The path to PDK, used to find qrctechfile")
-    scanParser.add_argument("-o", "--output", help="output json config file name", required=False, default="config.json")
+    scanParser.add_argument("--ip", help="IP Name", required=True, metavar="<IP_NAME>")
+    scanParser.add_argument("--dir", help="IP directory", required=True, metavar="<IP_DIR>")
+    scanParser.add_argument("--sdc", help="input sdc constraint file", default="", metavar="<MODE1:SDC_PATH1;MODE2:SDC_PATH2;...>")
+    scanParser.add_argument("--cons", help="input modes and sdcs. can be used multiple times", action="append", nargs=2, metavar=("<MODE>", "<SDC_PATH>"))
+    scanParser.add_argument("--pdk", help="The path to PDK, used to find qrctechfile", metavar="<PDK_PATH>")
+    scanParser.add_argument("-o", "--output", help="output json config file name", required=False, default="config.json", metavar="<CONFIG_PATH>")
     scanParser.add_argument("--show-metal", help="show metal layer", action="store_true")
     scanParser.add_argument("--only-physic", help="only scan for physical libraries", action="store_true")
     scanParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
-    scanParser.add_argument("--multi-proc", type=int, help="enable multi-thread scanning", required=False, default=4)
+    scanParser.add_argument("--multi-proc", type=int, help="enable multi-thread scanning", required=False, default=4, metavar="<NUMBER OF PROCESSOR>")
     scanParser.add_argument("--print-table", choices=['corner', 'metal', 'macro'])
     scanParser.add_argument("--metal", help="select the metal layers set")
     scanParser.add_argument("--no-output", help="Don't output json file.", action="store_true")
@@ -100,11 +123,11 @@ if __name__ == "__main__":
 
     viewParser = subparsers.add_parser("view")
     viewParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
-    viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json")
-    viewParser.add_argument("--io", help="input io file", required=False, default="")
-    viewParser.add_argument("--netlist", help="input netlist file", default="")
-    viewParser.add_argument('-o', '--output', help="output view file", required=True)
-    viewParser.add_argument("-g", "--global-file", help="output global file")
+    viewParser.add_argument("-j", "--json", help="input config json file", required=False, default="config.json",metavar="<CONFIG_PATH>")
+    viewParser.add_argument("--io", help="input io file", required=False, default="", metavar="<IO_FILE>")
+    viewParser.add_argument("--netlist", help="input netlist file", default="", metavar="<NETLIST_FILE>")
+    viewParser.add_argument('-o', '--output', help="output view file", required=True, metavar="<OUTPUT_PATH>")
+    viewParser.add_argument("-g", "--global-file", help="output global file", metavar="<GLOBALS PATH>")
     viewParser.set_defaults(func=view)
 
     args = parser.parse_args()

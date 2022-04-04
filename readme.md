@@ -29,16 +29,20 @@ optional arguments:
 The option that scan stage use,
 
 ```bash
-usage: main.py scan [-h] --ip IP --dir DIR [-o OUTPUT] [--show-metal]
-                    [--only-physic]
+usage: main.py scan [-h] --ip IP --dir DIR [--sdc SDC] [--pdk PDK] [-o OUTPUT]
+                    [--show-metal] [--only-physic]
                     [--log-level {critical,error,warn,info,debug}]
                     [--multi-proc MULTI_PROC]
-                    [--print-table {corner,metal,macro}]
+                    [--print-table {corner,metal,macro}] [--metal METAL]
+                    [--no-output]
 
 optional arguments:
   -h, --help            show this help message and exit
   --ip IP               IP Name
   --dir DIR             IP directory
+  --sdc SDC             input sdc constraint file; format:
+                        MODE1:SDC_PATH1;MODE2:SDC_PATH2
+  --pdk PDK             The path to PDK, used to find qrctechfile
   -o OUTPUT, --output OUTPUT
                         output json config file name
   --show-metal          show metal layer
@@ -47,11 +51,24 @@ optional arguments:
   --multi-proc MULTI_PROC
                         enable multi-thread scanning
   --print-table {corner,metal,macro}
+  --metal METAL         select the metal layers set
+  --no-output           Don't output json file.
 ```
 
 Several options are necessary. `--ip IP` designates the IP name, and `--dir DIR` points to the IP directory where timing and physical libs reside.
 
+`--sdc` input the design constraint. For multiple mode, the format it accepts is as `MODE1:SDC1;MODE2:SDC2`. For example, you have two different modes and corresponding constraints:
+* `func` mode, at `~/home/Data1/hello/world/func.sdc`,
+* `test` mode, at `~/home/Data1/hello/world/test.sdc`
+
+then you should pass the option `func:~/home/Data1/hello/world/func.sdc;test:~/home/Data1/hello/world/test.sdc` to `--sdc` option. Note that the constraint file must end with `.sdc` extension.
+
+`--pdk` input the design PDK path where the RC corner file `qrcTechFile` resides. Script will detect the corner according to the path name.
+
+`--metal` input the selected metal layers' name. To know what names the available metal layers have, you can use the `--show-metal` to show the names.
+
 `-o OUTPUT` designates the output json configuration file name. By default, it's `config.json`.
+`--no-output` indicate the script not to produce `config.json`.
 
 `--show-metal` is a switch option. Enabling it will show the available metal layer sets.
 `--only-physic` is a switch option. Enabling it will only scan the physical libs. 
@@ -64,18 +81,24 @@ Several options are necessary. `--ip IP` designates the IP name, and `--dir DIR`
 ### View 
 
 ```bash 
-usage: main.py view [-h] [-j JSON] -o OUTPUT [--metal METAL]
+usage: main.py view [-h] [--log-level {critical,error,warn,info,debug}]
+                    [-j JSON] [--io IO] [--netlist NETLIST] -o OUTPUT
+                    [-g GLOBAL_FILE]
 
 optional arguments:
   -h, --help            show this help message and exit
+  --log-level {critical,error,warn,info,debug}
   -j JSON, --json JSON  input config json file
+  --io IO               input io file
+  --netlist NETLIST     input netlist file
   -o OUTPUT, --output OUTPUT
                         output view file
-  --metal METAL         select the metal layers set
+  -g GLOBAL_FILE, --global-file GLOBAL_FILE
+                        output global file
 ```
-
-`-o OUTPUT` is necessary. It designates the output view file name.
-
 `-j JSON` set the configuration json file name. By default, it's `config.json`.
 
-`--metal METAL` set the metal layer set that are used in PD.
+`--io` input the optional io file. `--netlist` input optional netlist file.
+
+`-o OUTPUT` is necessary. It designates the output view file name.
+`-g | --global-file` output optional `.globals` file name.
