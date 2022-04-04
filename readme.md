@@ -1,12 +1,16 @@
 # Physical Design Automaitcal Configuration
 
-An automatical physical design configuration generation tool.
+An automatical physical design configuration generation tool. Visit Github host page [PDlibAutoConfig](https://www.github.com/wswslzp/PDLibAutoConfig).
 
 ## Overview
 
 Configuring the library setup of ASIC physical design is a tedious work, especially when there are many involved libraries.
 
 This script is aimed to provide an automatically generated library setup script that ASIC backend tool will accept. It can relief the burden of manually work.
+
+What the first part of the script actually does is to exhaustively scan the IP directories and the PDK directory to catch all the information, including the library paths, operating conditions etc. Then it will generate a JSON file that contains all those information. 
+
+What user should do is to check the generated JSON file, and complete the design's information in the JSON file. The manual completion job is easy enough. Then the second part of the script eat the completed JSON file and generate the Innovus view file and globals file.
 
 ## Usage
 
