@@ -20,14 +20,19 @@ def setLogLevel(args):
 def scan(args):
     config = jsonConfig.PdConfig()
     setLogLevel(args)
+    # for lib in args.lib:
+    #     libName = lib[0]
+    #     libDir = lib[1]
     if args.only_physic:
-        config.scanIpPhysicLibs(
-            (args.ip, args.dir)
-        )
+        config.scanIpPhysicLibs(*args.lib)
+        # config.scanIpPhysicLibs(
+        #     (args.ip, args.dir)
+        # )
     else:
-        config.addIp(
-            (args.ip, args.dir), parallel=args.multi_proc
-        )
+        config.addIp(*args.lib, parallel=args.multi_proc)
+        # config.addIp(
+        #     (args.ip, args.dir), parallel=args.multi_proc
+        # )
     if args.sdc != "":
         sdc_parser = re.compile(r"(\w+):([\w\W]+?\.sdc)")
         if sdc_parser.match(args.sdc):
@@ -102,8 +107,9 @@ if __name__ == "__main__":
     subparsers = parser.add_subparsers(help="choose the script stage.")
 
     scanParser = subparsers.add_parser("scan")
-    scanParser.add_argument("--ip", help="IP Name", required=True, metavar="<IP_NAME>")
-    scanParser.add_argument("--dir", help="IP directory", required=True, metavar="<IP_DIR>")
+    # scanParser.add_argument("--ip", help="IP Name", required=True, metavar="<IP_NAME>")
+    # scanParser.add_argument("--dir", help="IP directory", required=True, metavar="<IP_DIR>")
+    scanParser.add_argument('-l', '--lib', help="ip lib name and dir", metavar=("<IP_LIB_NAME>", "<IP_LIB_DIR_PATH>"), nargs=2, action="append")
     scanParser.add_argument("--sdc", help="input sdc constraint file", default="", metavar="<MODE1:SDC_PATH1;MODE2:SDC_PATH2;...>")
     scanParser.add_argument("--cons", help="input modes and sdcs. can be used multiple times", action="append", nargs=2, metavar=("<MODE>", "<SDC_PATH>"))
     scanParser.add_argument("--pdk", help="The path to PDK, used to find qrctechfile", metavar="<PDK_PATH>")
