@@ -65,7 +65,6 @@ class TimingLib(object):
             self.corner["process"] = "ss"
         else:
             logging.warn("unknown process: {}".format(name))
-        logging.debug(f"Got Process: {self.corner['process']}")
 
     def scanForName(self, content):
         ret = False
@@ -74,7 +73,6 @@ class TimingLib(object):
             pat = re.compile(r"\s*library\s*\(\s*(\w+)\s*\)\s*\{")
             if pat.match(line):
                 self.libName = pat.findall(line)[0]
-                logging.debug(f"Lib {self.libName}")
                 ret = True
                 break
         return ret
@@ -84,23 +82,18 @@ class TimingLib(object):
         nt_pat = re.compile(r"\s*nom_temperature\s*:\s*(-?[0-9]\d*\.?\d*|0\.\d*[1-9])\s*;")
         nv_pat = re.compile(r"\s*nom_voltage\s*:\s*([1-9]\d*\.\d*|0\.\d*[1-9]\d*)\s*;")
         matched = 0
-        logging.debug(f"Current lib name is {self.libName}")
-        logging.debug(f"Current lib path is {self.libPath}")
         for line in content:
             line = toStr(line)
             if p_pat.match(line):
                 self.cornerName = p_pat.findall(line)[0]
                 if self.corner["process"] == "":
-                    logging.debug(f"Got corner {self.cornerName}")
                     self.getProcessFromName(self.cornerName)
                 matched += 1
             if nt_pat.match(line):
                 self.corner["temperature"] = nt_pat.findall(line)[0]
-                logging.debug(f"Got temp {self.corner['temperature']}")
                 matched += 1
             if nv_pat.match(line):
                 self.corner["voltage"] = nv_pat.findall(line)[0]
-                logging.debug(f"Got voltage {self.corner['voltage']}")
                 matched += 1
             if matched == 3:
                 break
@@ -129,7 +122,6 @@ def scanPhysicLib(libPath: str):
 def scanTimingLib(libPath: str):
     ret = TimingLib()
     ret.libPath = libPath
-    logging.debug(f"Scan {libPath}")
     if libPath.endswith(".lib"):
         with open(libPath, "r") as libf:
             ret = ret.scanContent(libf)
@@ -159,13 +151,10 @@ def searchForTimingLib(path: str, parallel: int = 1):
             if lib.endswith(".lib") or lib.endswith(".lib.gz"):
                 abspath = os.path.join(p,lib)
                 paths.append(abspath)
-    paths_str = reduce(lambda a,b: a+"\n"+b, paths)
-    logging.debug("available path:\n" + paths_str)
     start_time = time.time()
     with Pool(parallel) as p:
         ret = p.map(scanTimingLib, paths)
     logging.debug(f"Time consume: {time.time() - start_time:.1f}")
-    logging.debug("The ret len is " + str(len(ret)))
     return ret
 
 if __name__ == "__main__":

@@ -113,7 +113,6 @@ class PdConfig(object):
 
     def scanIpTimingLibs(self, *ips, parallel=1):
         for ip in ips:
-            logging.debug(ip)
             self.timingManager.addSearchPath(ip[0], ip[1], parallel=parallel)
 
     def scanIpPhysicLibs(self, *ips):
@@ -159,7 +158,6 @@ class PdConfig(object):
         tmp = self.config['constraint'].copy()
         for mode in tmp:
             if tmp[mode]['sdcFile']['preCTS'] == "":
-                logging.debug(f"clean mode {mode}")
                 self.config['constraint'].pop(mode)
         return self
 
