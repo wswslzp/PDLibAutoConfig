@@ -113,6 +113,7 @@ class PdConfig(object):
 
     def scanIpTimingLibs(self, *ips, parallel=1):
         for ip in ips:
+            logging.debug(ip)
             self.timingManager.addSearchPath(ip[0], ip[1], parallel=parallel)
 
     def scanIpPhysicLibs(self, *ips):
@@ -120,9 +121,8 @@ class PdConfig(object):
             self.physicManager.searchForLibs(ip[1])
 
     def addIp(self, *ips, parallel=1):
-        logging.debug(ips)
-        self.scanIpTimingLibs(ips, parallel=parallel)
-        self.scanIpPhysicLibs(ips)
+        self.scanIpTimingLibs(*ips, parallel=parallel)
+        self.scanIpPhysicLibs(*ips)
 
     def showMetalAvail(self):
         self.physicManager.printLayers()
