@@ -26,7 +26,7 @@ def scan(args):
         )
     else:
         config.addIp(
-            args.ip, args.dir, parallel=args.multi_proc
+            (args.ip, args.dir), parallel=args.multi_proc
         )
     if args.sdc != "":
         sdc_parser = re.compile(r"(\w+):([\w\W]+?\.sdc)")
