@@ -19,13 +19,14 @@ The script has two step to use,
 * view step, generate the INNOVUS view script.
 
 ```bash
-usage: main.py [-h] {scan,view} ...
+usage: main.py [-h] [-v] {scan,view} ...
 
 positional arguments:
-  {scan,view}  choose the script stage.
+  {scan,view}    choose the script stage.
 
 optional arguments:
-  -h, --help   show this help message and exit
+  -h, --help     show this help message and exit
+  -v, --version  show program's version number and exit
 ```
 
 ### Scan
@@ -33,7 +34,7 @@ optional arguments:
 The option that scan stage use,
 
 ```bash
-usage: main.py scan [-h] --ip <IP_NAME> --dir <IP_DIR>
+usage: main.py scan [-h] -l <IP_LIB_NAME> <IP_LIB_DIR_PATH>
                     [--sdc <MODE1:SDC_PATH1;MODE2:SDC_PATH2;...>]
                     [--cons <MODE> <SDC_PATH>] [--pdk <PDK_PATH>]
                     [-o <CONFIG_PATH>] [--show-metal] [--only-physic]
@@ -44,8 +45,8 @@ usage: main.py scan [-h] --ip <IP_NAME> --dir <IP_DIR>
 
 optional arguments:
   -h, --help            show this help message and exit
-  --ip <IP_NAME>        IP Name
-  --dir <IP_DIR>        IP directory
+  -l <IP_LIB_NAME> <IP_LIB_DIR_PATH>, --libs <IP_LIB_NAME> <IP_LIB_DIR_PATH>
+                        ip lib name and dir
   --sdc <MODE1:SDC_PATH1;MODE2:SDC_PATH2;...>
                         input sdc constraint file
   --cons <MODE> <SDC_PATH>
@@ -63,13 +64,15 @@ optional arguments:
   --no-output           Don't output json file.
 ```
 
-Several options are necessary. `--ip IP` designates the IP name, and `--dir DIR` points to the IP directory where timing and physical libs reside.
+`-l` or `--libs` option designates the IP library name and directory. It can be used for multiple times to designate multiple IPs. These IP library directory should have both timing and physical libraries. This option is required.
 
 `--sdc` input the design constraint. For multiple mode, the format it accepts is as `MODE1:SDC1;MODE2:SDC2`. For example, you have two different modes and corresponding constraints:
 * `func` mode, at `~/home/Data1/hello/world/func.sdc`,
 * `test` mode, at `~/home/Data1/hello/world/test.sdc`
 
 then you should pass the option `func:~/home/Data1/hello/world/func.sdc;test:~/home/Data1/hello/world/test.sdc` to `--sdc` option. Note that the constraint file must end with `.sdc` extension.
+
+Alternatively, option `--cons` is available too to designate the mode and the SDC files. It can be used for multiple times to designate multiple constraints.
 
 `--pdk` input the design PDK path where the RC corner file `qrcTechFile` resides. Script will detect the corner according to the path name.
 

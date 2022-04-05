@@ -84,29 +84,23 @@ def view(args):
     factory.printGlobals(args.global_file)
     return args
 
-def master(args):
-    print("1.0")
-    return args
-
 if __name__ == "__main__":
 
     parser = ap.ArgumentParser()
-    parser.add_argument('-v', '--version', action="store_true", help="show version.")
-    parser.set_defaults(version=False)
-    parser.set_defaults(func=master)
+    parser.add_argument('-v', '--version', action="version", version="v1.0")
 
     subparsers = parser.add_subparsers(help="choose the script stage.")
 
     scanParser = subparsers.add_parser("scan")
-    scanParser.add_argument('-l', '--lib', help="ip lib name and dir", metavar=("<IP_LIB_NAME>", "<IP_LIB_DIR_PATH>"), nargs=2, action="append")
+    scanParser.add_argument('-l', '--libs', help="ip lib name and dir", metavar=("<IP_LIB_NAME>", "<IP_LIB_DIR_PATH>"), nargs=2, action="append", required=True)
     scanParser.add_argument("--sdc", help="input sdc constraint file", default="", metavar="<MODE1:SDC_PATH1;MODE2:SDC_PATH2;...>")
     scanParser.add_argument("--cons", help="input modes and sdcs. can be used multiple times", action="append", nargs=2, metavar=("<MODE>", "<SDC_PATH>"))
     scanParser.add_argument("--pdk", help="The path to PDK, used to find qrctechfile", metavar="<PDK_PATH>")
-    scanParser.add_argument("-o", "--output", help="output json config file name", required=False, default="config.json", metavar="<CONFIG_PATH>")
+    scanParser.add_argument("-o", "--output", help="output json config file name", default="config.json", metavar="<CONFIG_PATH>")
     scanParser.add_argument("--show-metal", help="show metal layer", action="store_true")
     scanParser.add_argument("--only-physic", help="only scan for physical libraries", action="store_true")
     scanParser.add_argument("--log-level", choices=['critical', 'error', 'warn', 'info', 'debug'])
-    scanParser.add_argument("--multi-proc", type=int, help="enable multi-thread scanning", required=False, default=4, metavar="<NUMBER OF PROCESSOR>")
+    scanParser.add_argument("--multi-proc", type=int, help="enable multi-thread scanning", default=4, metavar="<NUMBER OF PROCESSOR>")
     scanParser.add_argument("--print-table", choices=['corner', 'metal', 'macro'])
     scanParser.add_argument("--metal", help="select the metal layers set")
     scanParser.add_argument("--no-output", help="Don't output json file.", action="store_true")
