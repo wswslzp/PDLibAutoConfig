@@ -120,6 +120,7 @@ class PdConfig(object):
             self.physicManager.searchForLibs(ip[1])
 
     def addIp(self, *ips, parallel=1):
+        logging.debug(ips)
         self.scanIpTimingLibs(ips, parallel=parallel)
         self.scanIpPhysicLibs(ips)
 
