@@ -219,7 +219,7 @@ class PdConfig(object):
         for cons in self.config['constraint']:
             for corner in self.config['delayCorner']:
                 view = cons + "_" + corner
-                self.config['mmmcView'][view] = template
+                self.config['mmmcView'][view] = template.copy()
                 self.config['mmmcView'][view]['constraint'] = cons
                 self.config['mmmcView'][view]['delayCorner'] = corner
         return self
